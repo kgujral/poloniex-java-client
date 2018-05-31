@@ -110,7 +110,8 @@ public class WSSClient implements AutoCloseable {
 
     long startTime = System.currentTimeMillis();
 
-    while (router.isRunning() == true && (startTime + runTimeInMillis > System.currentTimeMillis())) {
+    while (router.isRunning() == true
+        && (runTimeInMillis < 0 || startTime + runTimeInMillis > System.currentTimeMillis())) {
       TimeUnit.MINUTES.sleep(1);
     }
 
