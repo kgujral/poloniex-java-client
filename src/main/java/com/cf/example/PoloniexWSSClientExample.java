@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.cf.client.WSSClient;
 import com.cf.client.poloniex.wss.model.PoloniexWSSSubscription;
 import com.cf.client.wss.handler.LoggerMessageHandler;
+import com.cf.client.wss.handler.TickerMessageHandler;
 
 /**
  *
@@ -31,11 +32,10 @@ public class PoloniexWSSClientExample {
 
   public void run() throws Exception {
     try (WSSClient wssClient = new WSSClient(ENDPOINT_URL)) {
-      wssClient.addSubscription(PoloniexWSSSubscription.USDT_ETH, new LoggerMessageHandler());
+      wssClient.addSubscription(PoloniexWSSSubscription.USDT_ETH, new SampleOrderBookMessageHandler());
       wssClient.addSubscription(PoloniexWSSSubscription.USDT_XRP, new LoggerMessageHandler());
-      // wssClient.addSubscription(PoloniexWSSSubscription.TICKER, new
-      // TickerMessageHandler());
-      wssClient.run(6000000);
+      wssClient.addSubscription(PoloniexWSSSubscription.TICKER, new TickerMessageHandler());
+      wssClient.run(1000 * 60);
     }
   }
 }
