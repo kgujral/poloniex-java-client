@@ -3,7 +3,7 @@ package com.cf.client.poloniex.wss.model;
 
 import java.math.BigDecimal;
 
-public class PoloniexWSSOrderBook {
+public class PoloniexWSSOrderBook implements Comparable<PoloniexWSSOrderBook> {
 
   private Double currencyPair;
 
@@ -59,5 +59,10 @@ public class PoloniexWSSOrderBook {
   public String toString() {
     return "currencyPair=" + currencyPair + ", seqNo=" + sequenceNumber.toPlainString() + ", type=" + type + ", rate="
         + rate.toPlainString() + ", amount=" + amount.toPlainString();
+  }
+
+  @Override
+  public int compareTo(PoloniexWSSOrderBook o) {
+    return this.sequenceNumber.compareTo(o.getSequenceNumber());
   }
 }
