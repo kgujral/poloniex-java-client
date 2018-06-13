@@ -85,7 +85,11 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
     for (Object sellRate : map.keySet()) {
       BigDecimal rate = new BigDecimal(sellRate.toString());
       BigDecimal amount = new BigDecimal(map.get(sellRate).toString());
-      entries.put(rate, amount);
+      if (amount.equals(BigDecimal.ZERO)) {
+        entries.remove(rate);
+      } else {
+        entries.put(rate, amount);
+      }
     }
   }
 

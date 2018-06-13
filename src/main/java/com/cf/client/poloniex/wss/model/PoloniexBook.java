@@ -12,6 +12,8 @@ public class PoloniexBook {
 
   private String currencyPair;
 
+  private BigDecimal latestSeqNo;
+
   public PoloniexBook() {
   }
 
@@ -45,9 +47,18 @@ public class PoloniexBook {
     this.currencyPair = currencyPair;
   }
 
+  public BigDecimal getLatestSeqNo() {
+    return latestSeqNo;
+  }
+
+  public void setLatestSeqNo(BigDecimal latestSeqNo) {
+    this.latestSeqNo = latestSeqNo;
+  }
+
   @Override
   public String toString() {
-    return "PoloniexBook [sell=" + sell + ", buy=" + buy + ", currencyPair=" + currencyPair + "]";
+    return "PoloniexBook [sell=" + sell + ", buy=" + buy + ", currencyPair=" + currencyPair + ", latestSeqNo="
+        + latestSeqNo + "]";
   }
 
 }
