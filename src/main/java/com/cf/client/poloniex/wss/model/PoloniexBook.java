@@ -1,38 +1,39 @@
 
 package com.cf.client.poloniex.wss.model;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.TreeMap;
 
 public class PoloniexBook {
 
-  private List<BookEntry> sell;
+  private TreeMap<BigDecimal, BigDecimal> sell;
 
-  private List<BookEntry> buy;
+  private TreeMap<BigDecimal, BigDecimal> buy;
 
   private String currencyPair;
 
   public PoloniexBook() {
   }
 
-  public PoloniexBook(List<BookEntry> sell, List<BookEntry> buy) {
+  public PoloniexBook(TreeMap<BigDecimal, BigDecimal> sell, TreeMap<BigDecimal, BigDecimal> buy) {
     super();
     this.sell = sell;
     this.buy = buy;
   }
 
-  public List<BookEntry> getSell() {
+  public TreeMap<BigDecimal, BigDecimal> getSell() {
     return sell;
   }
 
-  public void setSell(List<BookEntry> sell) {
+  public void setSell(TreeMap<BigDecimal, BigDecimal> sell) {
     this.sell = sell;
   }
 
-  public List<BookEntry> getBuy() {
+  public TreeMap<BigDecimal, BigDecimal> getBuy() {
     return buy;
   }
 
-  public void setBuy(List<BookEntry> buy) {
+  public void setBuy(TreeMap<BigDecimal, BigDecimal> buy) {
     this.buy = buy;
   }
 

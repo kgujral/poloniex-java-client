@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import com.cf.client.poloniex.wss.model.BookEntry;
+import java.util.TreeMap;
 import com.cf.client.poloniex.wss.model.OrderType;
 import com.cf.client.poloniex.wss.model.PoloniexBook;
 import com.cf.client.poloniex.wss.model.PoloniexWSSOrderBook;
@@ -72,8 +72,8 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
     Map sellMap = (Map) ((List) map.get("orderBook")).get(0);
     Map buyMap = (Map) ((List) map.get("orderBook")).get(1);
 
-    List<BookEntry> sells = new ArrayList<>();
-    List<BookEntry> buys = new ArrayList<>();
+    TreeMap<BigDecimal, BigDecimal> sells = new TreeMap<BigDecimal, BigDecimal>();
+    TreeMap<BigDecimal, BigDecimal> buys = new TreeMap<BigDecimal, BigDecimal>();
     bookEntries(sellMap, sells);
     bookEntries(buyMap, buys);
     PoloniexBook book = new PoloniexBook(sells, buys);
@@ -81,11 +81,11 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
   }
 
   @SuppressWarnings("rawtypes")
-  private void bookEntries(Map map, List<BookEntry> entries) {
+  private void bookEntries(Map map, TreeMap<BigDecimal, BigDecimal> entries) {
     for (Object sellRate : map.keySet()) {
       BigDecimal rate = new BigDecimal(sellRate.toString());
       BigDecimal amount = new BigDecimal(map.get(sellRate).toString());
-      entries.add(new BookEntry(rate, amount));
+      entries.put(rate, amount);
     }
   }
 
