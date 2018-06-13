@@ -57,8 +57,8 @@ public class PoloniexBook {
 
   @Override
   public String toString() {
-    return "PoloniexBook [sell=" + sell + ", buy=" + buy + ", currencyPair=" + currencyPair + ", latestSeqNo="
-        + latestSeqNo + "]";
+    return "PoloniexBook [latestSeqNo=" + latestSeqNo + "sell=" + sell + ", buy=" + buy + ", currencyPair="
+        + currencyPair + "]";
   }
 
 }
