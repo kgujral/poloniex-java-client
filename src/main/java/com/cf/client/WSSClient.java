@@ -82,7 +82,7 @@ public class WSSClient implements AutoCloseable {
    */
   public void run(long runTimeInMillis) throws InterruptedException, IOException, URISyntaxException {
 
-    System.out.println(uri);
+    System.out.println(uri + ", time = " + runTimeInMillis);
     final PoloniexWSSClientRouter router = new PoloniexWSSClientRouter(uri,
         subscriptions.entrySet().stream()
             .collect(Collectors.toMap(
