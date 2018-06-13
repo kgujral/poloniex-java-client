@@ -2,6 +2,7 @@
 package com.cf.client.wss.handler;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -83,7 +84,7 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
   @SuppressWarnings("rawtypes")
   private void bookEntries(Map map, TreeMap<BigDecimal, BigDecimal> entries) {
     for (Object sellRate : map.keySet()) {
-      BigDecimal rate = new BigDecimal(sellRate.toString());
+      BigDecimal rate = new BigDecimal(sellRate.toString()).setScale(8, RoundingMode.CEILING);
       BigDecimal amount = new BigDecimal(map.get(sellRate).toString());
       if (amount.equals(BigDecimal.ZERO)) {
         entries.remove(rate);
