@@ -30,7 +30,7 @@ public class PoloniexWSSClientRouter extends SimpleChannelInboundHandler<Object>
 
   private final static Logger LOG = LogManager.getLogger();
 
-  private static final int MAX_FRAME_LENGTH = 1262144;
+  private static final int MAX_FRAME_LENGTH = 12621440;
 
   private final WebSocketClientHandshaker handshaker;
 
