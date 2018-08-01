@@ -35,7 +35,7 @@ import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
  */
 public class WSSClient implements AutoCloseable {
 
-  private static final int MAX_CONTENT_BYTES = 8192;
+  private static final int MAX_CONTENT_BYTES = 81920;
 
   private static final String SCHEME_WSS = "wss";
 
