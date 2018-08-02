@@ -32,9 +32,6 @@ public class PoloniexWSSClientExample {
   public void run() throws Exception {
     try (WSSClient wssClient = new WSSClient(ENDPOINT_URL)) {
       wssClient.addSubscription(PoloniexWSSSubscription.TICKER, new TickerMessageHandler());
-      wssClient.addSubscription(PoloniexWSSSubscription.USDT_BTC, new SampleOrderBookMessageHandler());
-      wssClient.addSubscription(PoloniexWSSSubscription.USDT_ETH, new SampleOrderBookMessageHandler());
-      wssClient.addSubscription(PoloniexWSSSubscription.USDT_XRP, new SampleOrderBookMessageHandler());
       wssClient.run(-1);
     }
 

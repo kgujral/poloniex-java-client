@@ -17,7 +17,9 @@ public abstract class ATickerMessageHandler implements ITickerMessageHandler {
   @Override
   public void handle(String message) {
     PoloniexWSSTicker ticker = this.mapMessageToPoloniexTicker(message);
-    process(ticker);
+    if (ticker != null) {
+      process(ticker);
+    }
   }
 
   @SuppressWarnings("rawtypes")
