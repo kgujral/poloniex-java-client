@@ -140,4 +140,49 @@ public class PoloniexWSSTicker {
           baseVolume, quoteVolume, isFrozen, twentyFourHourHigh, twentyFourHourLow);
     }
   }
+
+  public String getCurrencyString() {
+    return currencyString;
+  }
+
+  public Double getCurrencyPair() {
+    return currencyPair;
+  }
+
+  public BigDecimal getLastPrice() {
+    return lastPrice;
+  }
+
+  public BigDecimal getLowestAsk() {
+    return lowestAsk;
+  }
+
+  public BigDecimal getHighestBid() {
+    return highestBid;
+  }
+
+  public BigDecimal getPercentChange() {
+    return percentChange;
+  }
+
+  public BigDecimal getBaseVolume() {
+    return baseVolume;
+  }
+
+  public BigDecimal getQuoteVolume() {
+    return quoteVolume;
+  }
+
+  public Boolean getIsFrozen() {
+    return isFrozen;
+  }
+
+  public BigDecimal getTwentyFourHourHigh() {
+    return twentyFourHourHigh;
+  }
+
+  public BigDecimal getTwentyFourHourLow() {
+    return twentyFourHourLow;
+  }
+
 }

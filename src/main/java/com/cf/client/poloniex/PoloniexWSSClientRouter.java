@@ -118,9 +118,9 @@ public class PoloniexWSSClientRouter extends SimpleChannelInboundHandler<Object>
     LOG.error(cause);
     if (!handshakeFuture.isDone()) {
       handshakeFuture.setFailure(cause);
+      running = false;
+      ctx.close();
     }
-    running = false;
-    ctx.close();
   }
 
   public boolean isRunning() {
