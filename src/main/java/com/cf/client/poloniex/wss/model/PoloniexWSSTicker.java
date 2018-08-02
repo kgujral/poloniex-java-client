@@ -10,6 +10,8 @@ import com.google.gson.Gson;
  */
 public class PoloniexWSSTicker {
 
+  public final String currencyString;
+
   public final Double currencyPair;
 
   public final BigDecimal lastPrice;
@@ -30,9 +32,10 @@ public class PoloniexWSSTicker {
 
   public final BigDecimal twentyFourHourLow;
 
-  public PoloniexWSSTicker(Double currencyPair, BigDecimal lastPrice, BigDecimal lowestAsk, BigDecimal highestBid,
-      BigDecimal percentChange, BigDecimal baseVolume, BigDecimal quoteVolume, Boolean isFrozen,
+  public PoloniexWSSTicker(String currencyString, Double currencyPair, BigDecimal lastPrice, BigDecimal lowestAsk,
+      BigDecimal highestBid, BigDecimal percentChange, BigDecimal baseVolume, BigDecimal quoteVolume, Boolean isFrozen,
       BigDecimal twentyFourHourHigh, BigDecimal twentyFourHourLow) {
+    this.currencyString = currencyString;
     this.currencyPair = currencyPair;
     this.lastPrice = lastPrice;
     this.lowestAsk = lowestAsk;
@@ -51,6 +54,8 @@ public class PoloniexWSSTicker {
   }
 
   public static class PoloniexWSSTickerBuilder {
+
+    private String currencyString;
 
     private Double currencyPair;
 
@@ -73,6 +78,11 @@ public class PoloniexWSSTicker {
     private BigDecimal twentyFourHourLow;
 
     public PoloniexWSSTickerBuilder() {
+    }
+
+    public PoloniexWSSTickerBuilder setCurrencyString(String currencyString) {
+      this.currencyString = currencyString;
+      return this;
     }
 
     public PoloniexWSSTickerBuilder setCurrencyPair(Double currencyPair) {
@@ -126,8 +136,8 @@ public class PoloniexWSSTicker {
     }
 
     public PoloniexWSSTicker buildPoloniexTicker() {
-      return new PoloniexWSSTicker(currencyPair, lastPrice, lowestAsk, highestBid, percentChange, baseVolume,
-          quoteVolume, isFrozen, twentyFourHourHigh, twentyFourHourLow);
+      return new PoloniexWSSTicker(currencyString, currencyPair, lastPrice, lowestAsk, highestBid, percentChange,
+          baseVolume, quoteVolume, isFrozen, twentyFourHourHigh, twentyFourHourLow);
     }
   }
 }
