@@ -4,11 +4,13 @@ package com.cf.client.wss.handler;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import com.cf.client.poloniex.wss.model.OrderType;
 import com.cf.client.poloniex.wss.model.PoloniexBook;
+import com.cf.client.poloniex.wss.model.PoloniexTrade;
 import com.cf.client.poloniex.wss.model.PoloniexWSSOrderBook;
 import com.google.gson.Gson;
 
@@ -49,6 +51,9 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
     if (orderType.equals("i")) {
       init(order);
     }
+    if (orderType.equals("t")) {
+      trade(order, currencyPair);
+    }
     if (!orderType.equals("o")) {
       return null;
     }
@@ -63,6 +68,19 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
     book.setRate(new BigDecimal((String) order.get(2)));
     book.setAmount(new BigDecimal((String) order.get(3)));
     return book;
+  }
+
+  @SuppressWarnings("rawtypes")
+  private void trade(List order, Double currencyPair) {
+    System.out.println(order);
+    OrderType type = OrderType.getOrderType((String) order.get(0), (Double) order.get(2));
+    if (type != null) {
+      PoloniexTrade trade = new PoloniexTrade(currencyPair, (String) order.get(1), type,
+          new BigDecimal((String) order.get(3)), new BigDecimal((String) order.get(4)),
+          new Date(((Double) order.get(5)).longValue() * 1000));
+
+      trade(trade);
+    }
   }
 
   @SuppressWarnings("rawtypes")

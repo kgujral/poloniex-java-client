@@ -6,7 +6,7 @@ public enum OrderType {
   BUY, SELL;
 
   public static OrderType getOrderType(String prefix, Double i) {
-    if ("o".equals(prefix)) {
+    if ("o".equals(prefix) || "t".equals(prefix)) {
       return i == 0 ? SELL : BUY;
     }
     return null;
