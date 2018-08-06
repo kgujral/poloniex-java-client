@@ -10,27 +10,27 @@ import com.google.gson.Gson;
  */
 public class PoloniexWSSTicker {
 
-  public final String currencyString;
+  public String currencyString;
 
-  public final Double currencyPair;
+  public Double currencyPair;
 
-  public final BigDecimal lastPrice;
+  public BigDecimal lastPrice;
 
-  public final BigDecimal lowestAsk;
+  public BigDecimal lowestAsk;
 
-  public final BigDecimal highestBid;
+  public BigDecimal highestBid;
 
-  public final BigDecimal percentChange;
+  public BigDecimal percentChange;
 
-  public final BigDecimal baseVolume;
+  public BigDecimal baseVolume;
 
-  public final BigDecimal quoteVolume;
+  public BigDecimal quoteVolume;
 
-  public final Boolean isFrozen;
+  public Boolean isFrozen;
 
-  public final BigDecimal twentyFourHourHigh;
+  public BigDecimal twentyFourHourHigh;
 
-  public final BigDecimal twentyFourHourLow;
+  public BigDecimal twentyFourHourLow;
 
   public PoloniexWSSTicker(String currencyString, Double currencyPair, BigDecimal lastPrice, BigDecimal lowestAsk,
       BigDecimal highestBid, BigDecimal percentChange, BigDecimal baseVolume, BigDecimal quoteVolume, Boolean isFrozen,
