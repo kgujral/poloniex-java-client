@@ -77,7 +77,7 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
     if (type != null) {
       PoloniexTrade trade = new PoloniexTrade(currencyPair, (String) order.get(1), type,
           new BigDecimal((String) order.get(3)), new BigDecimal((String) order.get(4)),
-          new Date(((Double) order.get(5)).longValue() * 1000));
+          new Date(((Double) order.get(5)).longValue() * 1000), "");
 
       trade(trade);
     }
