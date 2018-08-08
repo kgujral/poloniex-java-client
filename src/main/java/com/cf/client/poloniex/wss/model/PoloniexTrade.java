@@ -18,8 +18,6 @@ public class PoloniexTrade {
 
   private Date date;
 
-  private String timeAgo;
-
   public PoloniexTrade() {
   }
 
@@ -72,7 +70,7 @@ public class PoloniexTrade {
   }
 
   public PoloniexTrade(Double currencyPair, String tradeId, OrderType type, BigDecimal price, BigDecimal amount,
-      Date date, String timeAgo) {
+      Date date) {
     super();
     this.currencyPair = currencyPair;
     this.tradeId = tradeId;
@@ -80,21 +78,12 @@ public class PoloniexTrade {
     this.price = price;
     this.amount = amount;
     this.date = date;
-    this.timeAgo = timeAgo;
-  }
-
-  public String getTimeAgo() {
-    return timeAgo;
-  }
-
-  public void setTimeAgo(String timeAgo) {
-    this.timeAgo = timeAgo;
   }
 
   @Override
   public String toString() {
     return "PoloniexTrade [currencyPair=" + currencyPair + ", tradeId=" + tradeId + ", type=" + type + ", price="
-        + price + ", amount=" + amount + ", date=" + date + ", timeAgo=" + timeAgo + "]";
+        + price + ", amount=" + amount + ", date=" + date + "]";
   }
 
 }
