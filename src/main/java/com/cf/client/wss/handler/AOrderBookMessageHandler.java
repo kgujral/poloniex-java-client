@@ -72,7 +72,6 @@ public abstract class AOrderBookMessageHandler implements IOrderBookMessageHandl
 
   @SuppressWarnings("rawtypes")
   private void trade(List order, Double currencyPair) {
-    System.out.println(order);
     OrderType type = OrderType.getOrderType((String) order.get(0), (Double) order.get(2));
     if (type != null) {
       PoloniexTrade trade = new PoloniexTrade(currencyPair, (String) order.get(1), type,
