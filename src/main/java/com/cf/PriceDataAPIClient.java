@@ -8,7 +8,7 @@ package com.cf;
 public interface PriceDataAPIClient {
 
   public String returnTicker();
-
+  
   public String getUSDBTCChartData(Long periodInSeconds, Long startEpochInSeconds);
 
   public String getUSDETHChartData(Long periodInSeconds, Long startEpochInSeconds);
@@ -18,4 +18,6 @@ public interface PriceDataAPIClient {
   public String getChartData(String currencyPair, Long periodInSeconds, Long startEpochSeconds, Long endEpochSeconds);
 
   public String orderBook(String currencyPair, int depth);
+
+  public String returnTradeHistory(String currencyPair);
 }

@@ -86,4 +86,17 @@ public class PoloniexPublicAPIClient implements PriceDataAPIClient {
 
     return null;
   }
+
+  @Override
+  public String returnTradeHistory(String currencyPair) {
+    try {
+      String url = PUBLIC_URL + "command=returnTradeHistory&currencyPair=" + currencyPair;
+      return client.getHttp(url, null);
+    } catch (IOException ex) {
+      LogManager.getLogger(PoloniexPublicAPIClient.class)
+          .warn("Call to return orderBook API resulted in exception - " + ex.getMessage(), ex);
+    }
+
+    return null;
+  }
 }

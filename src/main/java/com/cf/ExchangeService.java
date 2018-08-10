@@ -73,4 +73,6 @@ public interface ExchangeService {
 
   public PoloniexOrderBook returnOrderBook(String currencyPair, int depth);
 
+  public List<PoloniexTradeHistory> returnPublicTradeHistory(String currencyPair);
+
 }

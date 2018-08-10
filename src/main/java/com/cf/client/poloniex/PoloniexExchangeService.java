@@ -258,6 +258,30 @@ public class PoloniexExchangeService implements ExchangeService {
    * @return List of PoloniexTradeHistory
    */
   @Override
+  public List<PoloniexTradeHistory> returnPublicTradeHistory(String currencyPair) {
+    long start = System.currentTimeMillis();
+    List<PoloniexTradeHistory> tradeHistory = new ArrayList<PoloniexTradeHistory>();
+    try {
+      String tradeHistoryData = publicClient.returnTradeHistory(currencyPair);
+      tradeHistory = mapper.mapTradeHistory(tradeHistoryData);
+      LOG.trace("Retrieved and mapped {} {} trade history in {} ms", tradeHistory.size(), currencyPair,
+          System.currentTimeMillis() - start);
+      return tradeHistory;
+    } catch (Exception ex) {
+      LOG.error("Error retrieving trade history for {} - {}", currencyPair, ex.getMessage());
+    }
+
+    return tradeHistory;
+  }
+
+  /**
+   * * Returns up to 50,000 trades for given currency pair
+   *
+   * @param currencyPair
+   *          Examples: USDT_ETH, USDT_BTC, BTC_ETH
+   * @return List of PoloniexTradeHistory
+   */
+  @Override
   public List<PoloniexTradeHistory> returnTradeHistory(String currencyPair) {
     long start = System.currentTimeMillis();
     List<PoloniexTradeHistory> tradeHistory = new ArrayList<PoloniexTradeHistory>();
