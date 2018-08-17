@@ -72,10 +72,11 @@ public class PoloniexTradingAPIClient implements TradingAPIClient {
   }
 
   @Override
-  public String returnTradeHistory(String currencyPair) {
+  public String returnTradeHistory(String currencyPair, Long start) {
     List<NameValuePair> additionalPostParams = new ArrayList<>();
     additionalPostParams.add(new BasicNameValuePair("currencyPair", currencyPair == null ? "all" : currencyPair));
-    additionalPostParams.add(new BasicNameValuePair("start", PoloniexExchangeService.LONG_LONG_AGO.toString()));
+    additionalPostParams.add(new BasicNameValuePair("start",
+        start == null ? PoloniexExchangeService.LONG_LONG_AGO.toString() : start.toString()));
     return returnTradingAPICommandResults("returnTradeHistory", additionalPostParams);
   }
 

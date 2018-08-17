@@ -56,7 +56,7 @@ public interface ExchangeService {
 
   public List<PoloniexOpenOrder> returnOpenOrders(String currencyName);
 
-  public List<PoloniexTradeHistory> returnTradeHistory(String currencyPair);
+  public Map<String, List<PoloniexTradeHistory>> returnTradeHistory(String currencyPair, Long startTime);
 
   public boolean cancelOrder(String orderNumber);
 

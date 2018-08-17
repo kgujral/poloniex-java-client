@@ -3,11 +3,11 @@ package com.cf.example;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.ZonedDateTime;
 import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.cf.client.poloniex.PoloniexExchangeService;
-import com.cf.data.model.poloniex.PoloniexTradeHistory;
 
 /**
  *
@@ -42,12 +42,10 @@ public class GetDailyBTCChartDataExample {
       LOG.warn("Did not find value for " + POLONIEX_API_SECRET_PROP_NAME + " in " + propertiesFileName
           + ". Trading API commands will fail");
     }
-
+    long epochSecond = ZonedDateTime.now().minusDays(20).toInstant().getEpochSecond();
+    System.out.println(epochSecond);
     PoloniexExchangeService service = new PoloniexExchangeService(tradingAPIKey, tradingAPISecret);
-
-    for (PoloniexTradeHistory history : service.returnPublicTradeHistory(("USDT_ETH")).subList(0, 10)) {
-      LOG.info(history.date);
-    }
+    System.out.println(service.returnTradeHistory((null), epochSecond).get("USDT_ETH").size());
   }
 
   private Properties loadProperties(String propertiesFileName) {

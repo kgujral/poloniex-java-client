@@ -3,7 +3,6 @@ package com.cf.data.model.poloniex;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
-import com.google.gson.Gson;
 
 /**
  *
@@ -47,6 +46,9 @@ public class PoloniexTradeHistory {
 
   @Override
   public String toString() {
-    return new Gson().toJson(this);
+    return "PoloniexTradeHistory [globalTradeID=" + globalTradeID + ", tradeID=" + tradeID + ", date=" + date
+        + ", rate=" + rate + ", amount=" + amount + ", total=" + total + ", fee=" + fee + ", orderNumber=" + orderNumber
+        + ", type=" + type + ", category=" + category + "]";
   }
+
 }

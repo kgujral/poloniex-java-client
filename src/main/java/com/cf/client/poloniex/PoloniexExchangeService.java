@@ -3,6 +3,7 @@ package com.cf.client.poloniex;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
@@ -282,12 +283,17 @@ public class PoloniexExchangeService implements ExchangeService {
    * @return List of PoloniexTradeHistory
    */
   @Override
-  public List<PoloniexTradeHistory> returnTradeHistory(String currencyPair) {
+  public Map<String, List<PoloniexTradeHistory>> returnTradeHistory(String currencyPair, Long startTime) {
     long start = System.currentTimeMillis();
-    List<PoloniexTradeHistory> tradeHistory = new ArrayList<PoloniexTradeHistory>();
+    Map<String, List<PoloniexTradeHistory>> tradeHistory = new HashMap<String, List<PoloniexTradeHistory>>();
     try {
-      String tradeHistoryData = tradingClient.returnTradeHistory(currencyPair);
-      tradeHistory = mapper.mapTradeHistory(tradeHistoryData);
+      String tradeHistoryData = tradingClient.returnTradeHistory(currencyPair, startTime);
+      if (currencyPair == null || currencyPair.equals("all")) {
+        tradeHistory = mapper.mapTradeHistoryMap(tradeHistoryData);
+      } else {
+        List<PoloniexTradeHistory> history = mapper.mapTradeHistory(tradeHistoryData);
+        tradeHistory.put(currencyPair, history);
+      }
       LOG.trace("Retrieved and mapped {} {} trade history in {} ms", tradeHistory.size(), currencyPair,
           System.currentTimeMillis() - start);
       return tradeHistory;

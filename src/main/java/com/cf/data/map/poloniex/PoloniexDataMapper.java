@@ -148,6 +148,13 @@ public class PoloniexDataMapper {
         }.getType());
     return tradeHistory;
   }
+  
+  public Map<String, List<PoloniexTradeHistory>> mapTradeHistoryMap(String tradeHistoryResults) {
+    Map<String, List<PoloniexTradeHistory>> tradeHistory = gson.fromJson(tradeHistoryResults,
+        new TypeToken<Map<String, List<PoloniexTradeHistory>>>() {
+        }.getType());
+    return tradeHistory;
+  }
 
   public boolean mapCancelOrder(String cancelOrderResult) {
     int success = gson.fromJson(cancelOrderResult, JsonObject.class).get("success").getAsInt();
