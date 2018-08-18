@@ -45,6 +45,8 @@ import com.google.gson.reflect.TypeToken;
 public class PoloniexDataMapper {
 
   private final Gson gson;
+  
+  private final Gson gson2;
 
   private final static Logger LOGGER = LogManager.getLogger();
 
@@ -66,6 +68,8 @@ public class PoloniexDataMapper {
         return ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString(), DTF);
       }
     }).registerTypeAdapter(PoloniexChartData.class, new PoloniexChartDataDeserializer()).create();
+    
+    gson2 = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
   }
 
   public List<PoloniexChartData> mapChartData(String chartDataResult) {
@@ -143,14 +147,14 @@ public class PoloniexDataMapper {
   }
 
   public List<PoloniexTradeHistory> mapTradeHistory(String tradeHistoryResults) {
-    List<PoloniexTradeHistory> tradeHistory = gson.fromJson(tradeHistoryResults,
+    List<PoloniexTradeHistory> tradeHistory = gson2.fromJson(tradeHistoryResults,
         new TypeToken<List<PoloniexTradeHistory>>() {
         }.getType());
     return tradeHistory;
   }
   
   public Map<String, List<PoloniexTradeHistory>> mapTradeHistoryMap(String tradeHistoryResults) {
-    Map<String, List<PoloniexTradeHistory>> tradeHistory = gson.fromJson(tradeHistoryResults,
+    Map<String, List<PoloniexTradeHistory>> tradeHistory = gson2.fromJson(tradeHistoryResults,
         new TypeToken<Map<String, List<PoloniexTradeHistory>>>() {
         }.getType());
     return tradeHistory;
