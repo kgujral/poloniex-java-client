@@ -166,7 +166,7 @@ public class PoloniexDataMapper {
   }
 
   public PoloniexOrderResult mapTradeOrder(String orderResult) {
-    PoloniexOrderResult tradeOrderResult = gson.fromJson(orderResult, new TypeToken<PoloniexOrderResult>() {
+    PoloniexOrderResult tradeOrderResult = gson2.fromJson(orderResult, new TypeToken<PoloniexOrderResult>() {
     }.getType());
     return tradeOrderResult;
   }

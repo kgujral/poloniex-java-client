@@ -119,7 +119,7 @@ public class PoloniexDataMapperTest {
     assertEquals(31226040L, orderResult.orderNumber.longValue());
     assertEquals(1, orderResult.resultingTrades.size());
     assertEquals(BigDecimal.valueOf(338.8732), orderResult.resultingTrades.get(0).amount);
-    assertEquals("2014-10-18T23:03:21Z", orderResult.resultingTrades.get(0).date.toString());
+    assertEquals("Sat Oct 18 23:03:21 IST 2014", orderResult.resultingTrades.get(0).date.toString());
     assertEquals(BigDecimal.valueOf(0.00000173), orderResult.resultingTrades.get(0).rate);
     assertEquals(BigDecimal.valueOf(0.00058625), orderResult.resultingTrades.get(0).total);
     assertEquals("16164", orderResult.resultingTrades.get(0).tradeID);
@@ -188,7 +188,7 @@ public class PoloniexDataMapperTest {
     PoloniexTradeHistory first = tradeHistory.get(0);
     assertEquals(84912521L, first.globalTradeID.longValue());
     assertEquals("1640236", first.tradeID);
-    assertEquals("2017-03-06T18:49:34Z", first.date.toString());
+    assertEquals("Mon Mar 06 18:49:34 IST 2017", first.date.toString());
     assertEquals("1273.37202076", first.rate.toPlainString());
     assertEquals("0.00150000", first.fee.toPlainString());
     assertEquals("55510230325", first.orderNumber);
