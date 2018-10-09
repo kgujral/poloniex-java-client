@@ -11,7 +11,7 @@ public class SampleOrderBookMessageHandler extends AOrderBookMessageHandler impl
 
   @Override
   public void process(List<PoloniexWSSOrderBook> books) {
-//    System.out.println(books);
+    System.out.println(books);
   }
 
   @Override

@@ -286,8 +286,9 @@ public class PoloniexExchangeService implements ExchangeService {
   public Map<String, List<PoloniexTradeHistory>> returnTradeHistory(String currencyPair, Long startTime) {
     long start = System.currentTimeMillis();
     Map<String, List<PoloniexTradeHistory>> tradeHistory = new HashMap<String, List<PoloniexTradeHistory>>();
+    String tradeHistoryData = null;
     try {
-      String tradeHistoryData = tradingClient.returnTradeHistory(currencyPair, startTime);
+      tradeHistoryData = tradingClient.returnTradeHistory(currencyPair, startTime);
       if (currencyPair == null || currencyPair.equals("all")) {
         tradeHistory = mapper.mapTradeHistoryMap(tradeHistoryData);
       } else {
@@ -298,7 +299,7 @@ public class PoloniexExchangeService implements ExchangeService {
           System.currentTimeMillis() - start);
       return tradeHistory;
     } catch (Exception ex) {
-      LOG.error("Error retrieving trade history for {} - {}", currencyPair, ex.getMessage());
+      LOG.error("Error retrieving trade history for {} - {} - {}", currencyPair, ex.getMessage(), tradeHistoryData);
     }
 
     return tradeHistory;

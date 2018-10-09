@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,7 +34,6 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 /**
@@ -45,7 +43,7 @@ import com.google.gson.reflect.TypeToken;
 public class PoloniexDataMapper {
 
   private final Gson gson;
-  
+
   private final Gson gson2;
 
   private final static Logger LOGGER = LogManager.getLogger();
@@ -68,7 +66,7 @@ public class PoloniexDataMapper {
         return ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString(), DTF);
       }
     }).registerTypeAdapter(PoloniexChartData.class, new PoloniexChartDataDeserializer()).create();
-    
+
     gson2 = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
   }
 
@@ -83,7 +81,7 @@ public class PoloniexDataMapper {
     try {
       PoloniexChartData[] chartDataResults = gson.fromJson(chartDataResult, PoloniexChartData[].class);
       results = Arrays.asList(chartDataResults);
-    } catch (JsonSyntaxException | DateTimeParseException ex) {
+    } catch (Exception ex) {
       LOGGER.error("Exception mapping chart data {} - {}", chartDataResult, ex.getMessage());
       results = Collections.emptyList();
     }
@@ -147,17 +145,27 @@ public class PoloniexDataMapper {
   }
 
   public List<PoloniexTradeHistory> mapTradeHistory(String tradeHistoryResults) {
-    List<PoloniexTradeHistory> tradeHistory = gson2.fromJson(tradeHistoryResults,
-        new TypeToken<List<PoloniexTradeHistory>>() {
-        }.getType());
-    return tradeHistory;
+    try {
+      List<PoloniexTradeHistory> tradeHistory = gson2.fromJson(tradeHistoryResults,
+          new TypeToken<List<PoloniexTradeHistory>>() {
+          }.getType());
+      return tradeHistory;
+    } catch (Exception ex) {
+      LOGGER.error("Exception mapping trade history data {} - {}", tradeHistoryResults, ex.getMessage());
+    }
+    return Collections.emptyList();
   }
-  
+
   public Map<String, List<PoloniexTradeHistory>> mapTradeHistoryMap(String tradeHistoryResults) {
-    Map<String, List<PoloniexTradeHistory>> tradeHistory = gson2.fromJson(tradeHistoryResults,
-        new TypeToken<Map<String, List<PoloniexTradeHistory>>>() {
-        }.getType());
-    return tradeHistory;
+    try {
+      Map<String, List<PoloniexTradeHistory>> tradeHistory = gson2.fromJson(tradeHistoryResults,
+          new TypeToken<Map<String, List<PoloniexTradeHistory>>>() {
+          }.getType());
+      return tradeHistory;
+    } catch (Exception ex) {
+      LOGGER.error("Exception mapping trade history data {} - {}", tradeHistoryResults, ex.getMessage());
+    }
+    return Collections.emptyMap();
   }
 
   public boolean mapCancelOrder(String cancelOrderResult) {
