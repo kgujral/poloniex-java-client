@@ -122,5 +122,6 @@ public class WSSClient implements AutoCloseable {
   @Override
   public void close() throws Exception {
     group.shutdownGracefully();
+    throw new Exception("closed.");
   }
 }
