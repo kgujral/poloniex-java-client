@@ -73,6 +73,7 @@ public class PoloniexWSSClientRouter extends SimpleChannelInboundHandler<Object>
   @Override
   public void channelInactive(ChannelHandlerContext ctx) throws Exception {
     LOG.trace("WebSocket Client disconnected!");
+    throw new Exception("Channel inactive");
   }
 
   @Override
