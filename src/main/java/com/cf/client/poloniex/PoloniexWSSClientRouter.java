@@ -115,13 +115,14 @@ public class PoloniexWSSClientRouter extends SimpleChannelInboundHandler<Object>
   }
 
   @Override
-  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+  public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
     LOG.error(cause);
     if (!handshakeFuture.isDone()) {
       handshakeFuture.setFailure(cause);
       running = false;
       ctx.close();
     }
+    throw new Exception(cause.getMessage());
   }
 
   public boolean isRunning() {
