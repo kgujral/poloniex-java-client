@@ -28,6 +28,8 @@ import com.google.gson.Gson;
  */
 public class PoloniexWSSSubscription {
 
+  public final static Gson GSON = new Gson();
+
   public final static transient PoloniexWSSSubscription TICKER = new PoloniexWSSSubscription("1002");
 
   public final static transient PoloniexWSSSubscription HEARTBEAT = new PoloniexWSSSubscription("1010");
@@ -51,7 +53,32 @@ public class PoloniexWSSSubscription {
   }
 
   @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((channel == null) ? 0 : channel.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    PoloniexWSSSubscription other = (PoloniexWSSSubscription) obj;
+    if (channel == null) {
+      if (other.channel != null)
+        return false;
+    } else if (!channel.equals(other.channel))
+      return false;
+    return true;
+  }
+
+  @Override
   public String toString() {
-    return new Gson().toJson(this);
+    return GSON.toJson(this);
   }
 }
