@@ -175,7 +175,7 @@ public class PoloniexTradingAPIClient implements TradingAPIClient {
   }
 
   private String returnTradingAPICommandResults(String commandValue, List<NameValuePair> additionalPostParams) {
-    BigInteger nonce = BigInteger.valueOf(System.currentTimeMillis());
+    BigInteger nonce = BigInteger.valueOf(System.currentTimeMillis() * 10000);
     try {
       List<NameValuePair> postParams = new ArrayList<>();
       postParams.add(new BasicNameValuePair("command", commandValue));

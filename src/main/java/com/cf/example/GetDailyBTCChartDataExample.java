@@ -45,7 +45,7 @@ public class GetDailyBTCChartDataExample {
     long epochSecond = ZonedDateTime.now().minusDays(20).toInstant().getEpochSecond();
     System.out.println(epochSecond);
     PoloniexExchangeService service = new PoloniexExchangeService(tradingAPIKey, tradingAPISecret);
-    System.out.println(service.returnTradeHistory((null), epochSecond).get("USDT_ETH"));
+    System.out.println( service.returnBalance(false) );
   }
 
   private Properties loadProperties(String propertiesFileName) {
